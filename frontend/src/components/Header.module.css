@@ -303,20 +303,22 @@
 @media (max-width: 768px) {
     .headerInner {
         flex-wrap: wrap;
-        gap: 12px;
-        padding: 12px 16px;
-        align-items: flex-start;
+        gap: 10px 12px;
+        padding: 10px 14px;
+        align-items: center;
     }
 
     .search {
         order: 3;
         width: 100%;
         max-width: none;
+        min-height: 44px;
     }
 
     .searchBtn {
-        padding: 10px 16px;
+        padding: 10px 14px;
         font-size: 13px;
+        flex-shrink: 0;
     }
 
     .userInfo {
@@ -328,8 +330,10 @@
     }
 
     .actions {
-        width: 100%;
-        justify-content: space-between;
+        width: auto;
+        order: 2;
+        justify-content: flex-end;
+        margin-left: auto;
     }
 
     .logoText {
@@ -339,14 +343,16 @@
 
 @media (max-width: 540px) {
     .headerInner {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
     }
 
     .actions {
         order: 2;
-        justify-content: flex-start;
-        gap: 12px;
+        justify-content: flex-end;
+        gap: 10px;
+        width: auto;
     }
 
     .search {
@@ -354,6 +360,6 @@
     }
 
     .navInner {
-        padding: 8px 16px;
+        padding: 8px 12px;
     }
 }

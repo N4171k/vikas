@@ -13,7 +13,7 @@ RUN npm ci --only=production
 # Copy source code
 COPY server.js ./
 COPY models/ ./models/
-COPY controllers/ ./controllers/
+
 COPY routes/ ./routes/
 COPY services/ ./services/
 COPY scripts/ ./scripts/

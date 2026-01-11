@@ -23,6 +23,8 @@ COPY agents/ ./agents/
 
 # Expose the port (adjust if needed)
 EXPOSE 3000
+ENV BACKEND_URL=https://vikas-x4i8.onrender.com/
+ENV FRONTEND_URL=https://vikas.naitiktiwari.in
 
 # Add cron file
 COPY cron/keepalive /etc/cron.d/keepalive

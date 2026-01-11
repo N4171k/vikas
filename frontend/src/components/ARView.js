@@ -172,6 +172,10 @@ export default function ARView({ modelType = 'glasses', onClose }) {
     useEffect(() => {
         async function startCamera() {
             try {
+                if (!navigator.mediaDevices?.getUserMedia) {
+                    throw new Error('Camera not supported in this browser');
+                }
+
                 const mediaStream = await navigator.mediaDevices.getUserMedia({
                     video: {
                         facingMode: 'user',
@@ -179,9 +183,15 @@ export default function ARView({ modelType = 'glasses', onClose }) {
                         height: { ideal: 720 }
                     }
                 });
+
                 setStream(mediaStream);
+
                 if (videoRef.current) {
                     videoRef.current.srcObject = mediaStream;
+                    // Explicitly start playback after metadata to avoid a blank video on some mobile browsers
+                    videoRef.current.onloadedmetadata = () => {
+                        videoRef.current?.play().catch(() => {});
+                    };
                 }
             } catch (err) {
                 console.error("Camera error:", err);
@@ -205,15 +215,23 @@ export default function ARView({ modelType = 'glasses', onClose }) {
                     "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
                 );
 
-                faceLandmarkerRef.current = await FaceLandmarker.createFromOptions(vision, {
+                // Try GPU first, then gracefully fall back to CPU to avoid a blank canvas on devices without WebGL2/acceleration
+                const createWithDelegate = async (delegate) => FaceLandmarker.createFromOptions(vision, {
                     baseOptions: {
                         modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
-                        delegate: "GPU"
+                        delegate
                     },
                     outputFaceBlendshapes: false,
                     runningMode: "VIDEO",
                     numFaces: 1
                 });
+
+                try {
+                    faceLandmarkerRef.current = await createWithDelegate("GPU");
+                } catch (gpuErr) {
+                    console.warn("GPU delegate unavailable, falling back to CPU", gpuErr);
+                    faceLandmarkerRef.current = await createWithDelegate("CPU");
+                }
 
                 setTrackingReady(true);
             } catch (err) {

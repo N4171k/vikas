@@ -19,6 +19,7 @@ COPY services/ ./services/
 COPY scripts/ ./scripts/
 COPY config/ ./config/
 COPY middleware/ ./middleware/
+COPY agents/ ./agents/
 
 # Expose the port (adjust if needed)
 EXPOSE 3000

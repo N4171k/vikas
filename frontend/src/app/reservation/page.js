@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,7 +8,7 @@ import api from '../../lib/api';
 import { useAuth } from '../../lib/auth';
 import styles from './page.module.css';
 
-export default function ReservationPage() {
+function ReservationPageContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
@@ -396,5 +396,13 @@ export default function ReservationPage() {
             </main>
             <Footer />
         </div>
+    );
+}
+
+export default function ReservationPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ReservationPageContent />
+        </Suspense>
     );
 }

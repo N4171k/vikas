@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,7 +8,7 @@ import api from '../../lib/api';
 import { useAuth } from '../../lib/auth';
 import styles from './page.module.css';
 
-export default function OrdersPage() {
+function OrdersPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { isAuthenticated } = useAuth();
@@ -231,5 +231,13 @@ export default function OrdersPage() {
 
             <Footer />
         </div>
+    );
+}
+
+export default function OrdersPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <OrdersPageContent />
+        </Suspense>
     );
 }

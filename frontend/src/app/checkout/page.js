@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -8,7 +8,7 @@ import api from '../../lib/api';
 import { useAuth } from '../../lib/auth';
 import styles from './page.module.css';
 
-export default function CheckoutPage() {
+function CheckoutPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { isAuthenticated, user, updateCartCount } = useAuth();
@@ -334,5 +334,13 @@ export default function CheckoutPage() {
 
             <Footer />
         </div>
+    );
+}
+
+export default function CheckoutPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CheckoutPageContent />
+        </Suspense>
     );
 }

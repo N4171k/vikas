@@ -18,6 +18,7 @@ COPY routes/ ./routes/
 COPY services/ ./services/
 COPY scripts/ ./scripts/
 COPY config/ ./config/
+COPY middleware/ ./middleware/
 
 # Expose the port (adjust if needed)
 EXPOSE 3000

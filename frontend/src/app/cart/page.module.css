@@ -1,0 +1,290 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gray-50);
+}
+
+.main {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gray-200);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Empty Cart */
+.emptyCart {
+    text-align: center;
+    padding: 64px 24px;
+    background: white;
+    border-radius: 8px;
+}
+
+.emptyIcon {
+    font-size: 64px;
+    margin-bottom: 24px;
+}
+
+.emptyCart h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.emptyCart p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* Cart Layout */
+.cartLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 992px) {
+    .cartLayout {
+        grid-template-columns: 1fr 320px;
+    }
+}
+
+/* Cart Items */
+.cartItems {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.cartHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.cartItem {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+@media (max-width: 768px) {
+    .cartItem {
+        grid-template-columns: 100px 1fr;
+    }
+
+    .itemPrice {
+        grid-column: 1 / -1;
+        text-align: left;
+        margin-top: 8px;
+    }
+}
+
+.itemImage {
+    background: #f7f7f7;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.itemImage img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemTitle {
+    font-size: 16px;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.itemTitle:hover {
+    color: var(--text-link-hover);
+    text-decoration: underline;
+}
+
+.itemBrand {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.itemStock {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.inStock {
+    color: #067d62;
+}
+
+.outOfStock {
+    color: #c40000;
+}
+
+.itemActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantityControl {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.quantityControl select {
+    padding: 4px 8px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+}
+
+.actionDivider {
+    color: var(--gray-300);
+}
+
+.deleteBtn {
+    font-size: 13px;
+    color: var(--text-link);
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.deleteBtn:hover {
+    color: var(--text-link-hover);
+    text-decoration: underline;
+}
+
+.itemPrice {
+    text-align: right;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+}
+
+.originalPrice {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    display: block;
+}
+
+.subtotalRow {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 16px;
+    font-size: 18px;
+}
+
+.subtotalAmount {
+    font-weight: 600;
+}
+
+/* Order Summary */
+.orderSummary {
+    position: sticky;
+    top: 80px;
+}
+
+.summaryCard {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.freeDeliveryMsg {
+    font-size: 13px;
+    color: #067d62;
+    margin-bottom: 12px;
+}
+
+.summarySubtotal {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.priceBreakdown {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.priceBreakdown h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.breakdownRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.discountAmount {
+    color: #067d62;
+}
+
+.totalRow {
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-200);
+    font-size: 18px;
+    font-weight: 600;
+}

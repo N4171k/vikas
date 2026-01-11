@@ -1,0 +1,204 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gray-50);
+}
+
+.main {
+    flex: 1;
+    padding: 40px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.splitLayout {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    min-height: 500px;
+}
+
+.authSection {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoSection {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.infoContent {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.infoLogo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.infoTagline {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 32px;
+    font-weight: 300;
+}
+
+.featuresList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.featureItem {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.featureIcon {
+    font-size: 1.25rem;
+    padding-top: 2px;
+}
+
+.featureText h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.featureText p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.error {
+    background: #fef2f2;
+    color: #c40000;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.formGroup label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.input {
+    padding: 12px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+.submitBtn {
+    margin-top: 8px;
+    padding: 12px;
+    font-weight: 600;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+}
+
+.divider span {
+    padding: 0 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.registerBtn {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .splitLayout {
+        flex-direction: column-reverse;
+    }
+
+    .authSection {
+        padding: 24px;
+    }
+
+    .infoSection {
+        padding: 32px 24px;
+        text-align: center;
+    }
+
+    .featureItem {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

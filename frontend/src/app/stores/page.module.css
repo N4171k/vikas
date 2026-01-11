@@ -1,0 +1,228 @@
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gray-50);
+}
+
+.main {
+    flex: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 48px 20px;
+    background: linear-gradient(135deg, #232f3e 0%, #37475a 100%);
+    color: white;
+    margin-bottom: 32px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.hero>p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 24px;
+}
+
+.searchForm {
+    display: flex;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.quickLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.quickLink {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quickLink:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Stores Section */
+.storesSection {
+    padding: 32px 0;
+}
+
+.storesSection h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.storesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.storeCard {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.storeCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.storeImage {
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.storeIcon {
+    font-size: 48px;
+}
+
+.storeInfo {
+    padding: 20px;
+}
+
+.storeInfo h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.storeAddress {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.storeCity {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.storePhone,
+.storeHours {
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.storeFeatures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.feature {
+    padding: 4px 10px;
+    background: var(--gray-100);
+    border-radius: 12px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.storeActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.directionBtn,
+.callBtn {
+    flex: 1;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.noStores {
+    text-align: center;
+    padding: 48px;
+    background: white;
+    border-radius: 8px;
+}
+
+.noStores h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.noStores p {
+    color: var(--text-secondary);
+}
+
+/* Services */
+.servicesSection {
+    padding: 48px 0;
+    margin-bottom: 32px;
+}
+
+.servicesSection h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.serviceCard {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.serviceIcon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.serviceCard h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.serviceCard p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}

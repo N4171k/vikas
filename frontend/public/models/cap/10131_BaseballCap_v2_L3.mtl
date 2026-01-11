@@ -1,0 +1,15 @@
+newmtl 10131_BaseballCap_v02
+	Ns 30.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000
+	illum 2
+
+	Ka 2.3000 2.3000 2.3000
+	Kd 2.3000 2.3000 2.3000
+	Ks 0.0500 0.0500 0.0500
+	Ke 0.1000 0.1000 0.1000
+
+	map_Ka 10131_BaseballCap_v02.jpg
+	map_Kd 10131_BaseballCap_v02.jpg

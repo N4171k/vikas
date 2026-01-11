@@ -1,0 +1,236 @@
+/* Footer Styles - Unique VIKAS Design */
+
+.footer {
+    margin-top: 80px;
+}
+
+/* Back to Top */
+.backToTop {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #334155;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.backToTop:hover {
+    background: #475569;
+    color: white;
+}
+
+/* Main Footer */
+.main {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 60px 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 48px;
+}
+
+/* Brand */
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoIcon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+}
+
+.logoText {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+
+.tagline {
+    font-size: 14px;
+    font-weight: 500;
+    color: #14b8a6;
+}
+
+.description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    max-width: 280px;
+}
+
+/* Links */
+.links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.column h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.column a {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 6px 0;
+    transition: all 0.2s ease;
+}
+
+.column a:hover {
+    color: #06b6d4;
+    transform: translateX(4px);
+}
+
+/* Newsletter */
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.newsletter h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.newsletter p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.form input {
+    flex: 1;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form input:focus {
+    border-color: #14b8a6;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form button {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%);
+    border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* Bottom Bar */
+.bottom {
+    background: #0f172a;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.legal {
+    display: flex;
+    gap: 24px;
+}
+
+.legal a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.legal a:hover {
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .newsletter {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 40px 0;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bottom .container {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}

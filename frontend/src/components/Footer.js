@@ -69,7 +69,7 @@ export default function Footer() {
             {/* Bottom Bar */}
             <div className={styles.bottom}>
                 <div className={styles.container}>
-                    <p>© 2024 VIKAS. Built with AI ❤️</p>
+                    <p>© 2026 VIKAS. Made by CTRL Freaks ❤️</p>
                     <div className={styles.legal}>
                         <Link href="#">Privacy</Link>
                         <Link href="#">Terms</Link>

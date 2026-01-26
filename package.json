@@ -1,0 +1,27 @@
+{
+  "name": "vikas",
+  "version": "1.0.0",
+  "description": "An Amazon-like intelligent retail assistant demonstrating the future of omnichannel commerce.",
+  "main": "proxy-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N4171k/vikas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/N4171k/vikas/issues"
+  },
+  "homepage": "https://github.com/N4171k/vikas#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "node-fetch": "^2.7.0",
+    "socket.io": "^4.8.3"
+  }
+}

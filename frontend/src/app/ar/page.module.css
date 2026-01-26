@@ -5,6 +5,231 @@
     font-family: var(--font-inter, sans-serif);
 }
 
+/* Banner Styles */
+.banner {
+    background: linear-gradient(135deg, #FF9900 0%, #FF5500 100%);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.bannerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bannerText {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.bannerIcon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.bannerLink {
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.bannerLink:hover {
+    opacity: 0.8;
+}
+
+.bannerClose {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+    line-height: 1;
+    padding: 0;
+}
+
+.bannerClose:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Popup Styles */
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.popup {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popupClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 28px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    line-height: 1;
+    padding: 0;
+}
+
+.popupClose:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.popupIcon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.popupTitle {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #FF9900 0%, #FF5500 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.popupText {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.popupSteps {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.popupSteps h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #FF9900;
+}
+
+.popupSteps ol {
+    margin: 0;
+    padding-left: 20px;
+    color: #aaa;
+}
+
+.popupSteps li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.popupButton {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #FF9900 0%, #FF5500 100%);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 12px;
+}
+
+.popupButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.3);
+}
+
+.popupButtonSecondary {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #aaa;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.popupButtonSecondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;

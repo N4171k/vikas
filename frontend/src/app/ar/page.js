@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import styles from './page.module.css';
@@ -13,9 +13,108 @@ const ARView = dynamic(() => import('../../components/ARView'), {
 
 export default function ARPage() {
     const [activeExperience, setActiveExperience] = useState(null);
+    const [showBanner, setShowBanner] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        // Check if user has seen the popup before
+        const hasSeenPopup = localStorage.getItem('ar-popup-seen');
+        if (!hasSeenPopup) {
+            setShowPopup(true);
+        }
+        
+        // Check if user has dismissed the banner
+        const bannerDismissed = localStorage.getItem('ar-banner-dismissed');
+        if (bannerDismissed) {
+            setShowBanner(false);
+        }
+    }, []);
+
+    const handleCloseBanner = () => {
+        setShowBanner(false);
+        localStorage.setItem('ar-banner-dismissed', 'true');
+    };
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+        localStorage.setItem('ar-popup-seen', 'true');
+    };
 
     return (
         <div className={styles.page}>
+            {/* Context Banner */}
+            {showBanner && (
+                <div className={styles.banner}>
+                    <div className={styles.bannerContent}>
+                        <div className={styles.bannerText}>
+                            <span className={styles.bannerIcon}>ℹ️</span>
+                            <span>
+                                <strong>Local Mode Required:</strong> This AR feature only works by running the app locally. 
+                                Please clone the repository from{' '}
+                                <a 
+                                    href="https://github.com/N4171k/vikas" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className={styles.bannerLink}
+                                >
+                                    GitHub
+                                </a>
+                            </span>
+                        </div>
+                        <button 
+                            className={styles.bannerClose}
+                            onClick={handleCloseBanner}
+                            aria-label="Close banner"
+                        >
+                            ×
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Context Popup */}
+            {showPopup && (
+                <div className={styles.popupOverlay} onClick={handleClosePopup}>
+                    <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
+                        <button 
+                            className={styles.popupClose}
+                            onClick={handleClosePopup}
+                            aria-label="Close popup"
+                        >
+                            ×
+                        </button>
+                        <div className={styles.popupIcon}>🚀</div>
+                        <h2 className={styles.popupTitle}>AR Feature - Local Setup Required</h2>
+                        <p className={styles.popupText}>
+                            To experience our Augmented Reality features, you need to run this application locally 
+                            on your device. This is because AR requires direct camera access and local processing.
+                        </p>
+                        <div className={styles.popupSteps}>
+                            <h3>Quick Setup:</h3>
+                            <ol>
+                                <li>Clone the repository from GitHub</li>
+                                <li>Install dependencies and run locally</li>
+                                <li>Allow camera permissions when prompted</li>
+                            </ol>
+                        </div>
+                        <a 
+                            href="https://github.com/N4171k/vikas" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={styles.popupButton}
+                        >
+                            Visit GitHub Repository
+                        </a>
+                        <button 
+                            className={styles.popupButtonSecondary}
+                            onClick={handleClosePopup}
+                        >
+                            Got It, Continue
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* Main Selection Screen */}
             <div className={styles.container}>
                 <div className={styles.header}>

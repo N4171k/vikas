@@ -1,5 +1,14 @@
 const { Sequelize } = require('sequelize');
+const dns = require('dns');
+const { promisify } = require('util');
 require('dotenv').config();
+
+// For development: Allow self-signed certificates
+if (process.env.NODE_ENV === 'development') {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
+const resolve4 = promisify(dns.resolve4);
 
 // Aiven CA Certificate for SSL
 const AIVEN_CA_CERT = `-----BEGIN CERTIFICATE-----
@@ -29,29 +38,92 @@ lFJFaD9gFTv24+kq95iHwu79vhDWeBnPJHjH1dt/Xi1C9XhKLtOUzlp/+ODc4xmh
 Rg==
 -----END CERTIFICATE-----`;
 
-// PostgreSQL connection using Aiven with CA certificate
-// Using IP address (95.111.198.255) instead of hostname due to DNS issues in some environments
-const sequelize = new Sequelize({
-  dialect: 'postgres',
-  host: '95.111.198.255',
-  port: 27803,
-  username: 'avnadmin',
-  password: 'AVNS_dH70CC3PVYwR474Ti9O',
-  database: 'defaultdb',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,  // Must be false when using IP (hostname won't match cert)
-      ca: AIVEN_CA_CERT
-    }
-  },
-  logging: process.env.NODE_ENV === 'development' ? console.log : false,
-  pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
+// Initialize Sequelize synchronously
+let sequelize = null;
+
+// Initialize immediately - don't wait for DNS resolution
+try {
+  if (process.env.DATABASE_URL) {
+    // Parse and clean the DATABASE_URL
+    let dbUrl = process.env.DATABASE_URL;
+    
+    // Remove sslmode parameter to avoid conflicts with dialectOptions
+    dbUrl = dbUrl.replace(/\?sslmode=require/i, '');
+    
+    // Configure SSL properly for self-signed certificates
+    const sequelizeConfig = {
+      dialect: 'postgres',
+      logging: process.env.NODE_ENV === 'development' ? console.log : false,
+      pool: {
+        max: 10,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      },
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false  // Accept self-signed certificates in dev
+        }
+      }
+    };
+    
+    sequelize = new Sequelize(dbUrl, sequelizeConfig);
+    console.log('✓ Sequelize initialized with DATABASE_URL');
+  } else {
+    // Fallback: use hardcoded Aiven connection
+    sequelize = new Sequelize({
+      dialect: 'postgres',
+      host: '213.163.204.106',
+      port: 27803,
+      username: 'avnadmin',
+      password: 'AVNS_dH70CC3PVYwR474Ti9O',
+      database: 'defaultdb',
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+          ca: AIVEN_CA_CERT
+        }
+      },
+      logging: process.env.NODE_ENV === 'development' ? console.log : false,
+      pool: {
+        max: 10,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      }
+    });
+    console.log('✓ Sequelize initialized with hardcoded Aiven connection');
   }
+} catch (error) {
+  console.error('❌ Failed to initialize Sequelize:', error.message);
+  process.exit(1);
+}
+
+// Perform DNS resolution and monitoring asynchronously (doesn't block startup)
+async function initializeDatabase() {
+  try {
+    // Try to resolve hostname for monitoring (optional, doesn't block)
+    if (process.env.DATABASE_URL) {
+      try {
+        const url = new URL(process.env.DATABASE_URL);
+        const hostname = url.hostname;
+        const addresses = await resolve4(hostname);
+        console.log(`✓ DNS resolved ${hostname} to ${addresses[0]}`);
+      } catch (dnsError) {
+        console.log(`⚠ DNS resolution check failed: ${dnsError.message}`);
+      }
+    }
+  } catch (error) {
+    console.error('Background DNS monitoring error:', error.message);
+  }
+}
+
+// Initialize database
+initializeDatabase().catch(err => {
+  console.error('Failed to initialize database:', err);
+  process.exit(1);
 });
 
 // Test database connection
